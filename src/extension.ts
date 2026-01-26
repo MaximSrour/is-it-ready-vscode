@@ -102,16 +102,19 @@ export function activate(context: ExtensionContext) {
 
       await tasksProvider.refresh();
       const tasks = await tasksProvider.getChildren();
-      for (const item of tasks) {
-        tasksProvider.setStatus(item.task.tool, "running");
-        const exitCode = await runTaskInternal(
-          outputChannel,
-          workspaceFolder,
-          item.task
-        );
-        const status = exitCode === 0 ? "passed" : "failed";
-        tasksProvider.setStatus(item.task.tool, status);
-      }
+
+      await Promise.all(
+        tasks.map(async (item) => {
+          tasksProvider.setStatus(item.task.tool, "running");
+          const exitCode = await runTaskInternal(
+            outputChannel,
+            workspaceFolder,
+            item.task
+          );
+          const status = exitCode === 0 ? "passed" : "failed";
+          tasksProvider.setStatus(item.task.tool, status);
+        })
+      );
     })
   );
 

@@ -1,12 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 
 import {
-  type IsItReadyTask,
   TasksTreeItem,
   buildShellCommand,
   getStatusIcon,
   resolveTask,
-} from "../extension";
+} from "./helpers";
+import { type IsItReadyTask } from "./types";
 
 vi.mock("vscode", () => {
   class EventEmitter<T> {

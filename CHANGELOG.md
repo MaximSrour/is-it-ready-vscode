@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.8...v1.0.9) (2026-01-26)
+
+
+### Bug Fixes
+
+* improve icon quality ([dc96ec6](https://github.com/MaximSrour/is-it-ready-vscode/commit/dc96ec6cc11c8dd0b8a1a8faa34753a5d7027b3c))
+
 ## [1.0.8](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.7...v1.0.8) (2026-01-26)
 
 

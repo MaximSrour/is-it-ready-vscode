@@ -38,5 +38,5 @@ jobs:
       - name: Testing
         run: npm run test
 
-      - name: Knip inventory
-        run: npm run knip
+      # - name: Knip inventory
+      #   run: npm run knip

@@ -1,6 +1,7 @@
 {
   "name": "is-it-ready",
   "displayName": "is-it-ready",
+  "publisher": "MaximSrour",
   "description": "Orchestrator that runs your project's formatting, linting, tests, inventory, and security checks in one dashboard.",
   "version": "1.0.0",
   "engines": {

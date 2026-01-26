@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.2...v1.0.3) (2026-01-26)
+
+
+### Bug Fixes
+
+* add repository information to package.json ([42cd6e5](https://github.com/MaximSrour/is-it-ready-vscode/commit/42cd6e5caa214d8d4f569d737583e3110721f64b))
+
 ## [1.0.2](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.1...v1.0.2) (2026-01-26)
 
 

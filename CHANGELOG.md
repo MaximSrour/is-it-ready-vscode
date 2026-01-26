@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.7...v1.0.8) (2026-01-26)
+
+
+### Bug Fixes
+
+* give each task its own output channel ([79f52fb](https://github.com/MaximSrour/is-it-ready-vscode/commit/79f52fbed2713b9b102999e855f818c2405a2f18))
+
 ## [1.0.7](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.6...v1.0.7) (2026-01-26)
 
 

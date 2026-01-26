@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.0...v1.0.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* update release process to publish to vsce ([fec9a7a](https://github.com/MaximSrour/is-it-ready-vscode/commit/fec9a7a2e894bb1743d83fcfa4056bc487d21013))
+
 # 1.0.0 (2026-01-26)
 
 

@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.3...v1.0.4) (2026-01-26)
+
+
+### Bug Fixes
+
+* update icon to png ([a71c0ca](https://github.com/MaximSrour/is-it-ready-vscode/commit/a71c0ca177a466684a1e3c09dc91fe696a02bab4))
+
 ## [1.0.3](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.2...v1.0.3) (2026-01-26)
 
 

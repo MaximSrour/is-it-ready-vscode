@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.1...v1.0.2) (2026-01-26)
+
+
+### Bug Fixes
+
+* add required files ([a052841](https://github.com/MaximSrour/is-it-ready-vscode/commit/a05284142ca2f8aff58946f3e10e07d58b9f6473))
+
 ## [1.0.1](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.0...v1.0.1) (2026-01-26)
 
 

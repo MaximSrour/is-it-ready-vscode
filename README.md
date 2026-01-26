@@ -1,71 +1,57 @@
-# is-it-ready README
+# is-it-ready
 
-This is the README for your extension "is-it-ready". After writing up a brief description, we recommend including the following sections.
+[![GitHub contributors](https://img.shields.io/github/contributors/MaximSrour/is-it-ready-vscode?style=for-the-badge)](https://github.com/MaximSrour/is-it-ready/graphs/contributors)
+[![NPM License](https://img.shields.io/npm/l/is-it-ready?style=for-the-badge)](https://github.com/MaximSrour/is-it-ready-vscode/blob/master/LICENSE)
 
-## Features
+VS Code extension that runs your project's formatting, linting, tests,
+inventory, and security checks in one dashboard.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Installation
 
-For example if there is an image subfolder under your extension project workspace:
+Install from the VS Code Marketplace.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Usage
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Create a config file in your workspace (see below).
+- Open the **Is It Ready** view in the Activity Bar.
+- Click a task to run it, or use **Run All Tasks**.
 
-## Requirements
+### Commands
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- `Is It Ready: Refresh Tasks`
+- `Is It Ready: Run All Tasks`
+- `Is It Ready: Run Task`
+- `Is It Ready: Run Fix`
 
-## Extension Settings
+## Configuration
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+To get started, you must create a config file in the root directory of your project
+(i.e., in the same directory as your `package.json`).
 
-For example:
+- Supported filenames: `.is-it-ready.config.js`, `.is-it-ready.config.cjs`,
+  `.is-it-ready.config.mjs` (CommonJS `module.exports` or ESM `export default`).
+- Each file must export an object with a `tasks` array. Every task entry must
+  specify the `tool` name and its `command`, and may provide `fixCommand` overrides.
 
-This extension contributes the following settings:
+Example `.is-it-ready.config.mjs`:
 
-- `myExtension.enable`: Enable/disable this extension.
-- `myExtension.thing`: Set to `blah` to do something.
+```js
+export default {
+  tasks: [
+    {
+      tool: "Prettier",
+      command: "npm run prettier",
+      fixCommand: "npm run prettier -- --write",
+    },
+    {
+      tool: "ESLint",
+      command: "npm run lint",
+    },
+  ],
+};
+```
 
-## Known Issues
+## Contributing
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for
+detailed guidelines on code standards, testing, and the pull request process.

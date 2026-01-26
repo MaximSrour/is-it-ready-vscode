@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.5...v1.0.6) (2026-01-26)
+
+
+### Bug Fixes
+
+* optimize task execution by running concurrently ([d4aa8b5](https://github.com/MaximSrour/is-it-ready-vscode/commit/d4aa8b524710bed238da27cf11cd95719ba299a1))
+
 ## [1.0.5](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.4...v1.0.5) (2026-01-26)
 
 

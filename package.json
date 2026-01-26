@@ -1,0 +1,139 @@
+{
+  "name": "is-it-ready",
+  "displayName": "is-it-ready",
+  "description": "Orchestrator that runs your project's formatting, linting, tests, inventory, and security checks in one dashboard.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.108.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "is-it-ready",
+          "title": "Is It Ready",
+          "icon": "media/is-it-ready.svg"
+        }
+      ]
+    },
+    "views": {
+      "is-it-ready": [
+        {
+          "id": "is-it-ready.tasks",
+          "name": "Tasks"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "is-it-ready.refreshTasks",
+        "title": "Refresh Tasks"
+      },
+      {
+        "command": "is-it-ready.runAllTasks",
+        "title": "Run All Tasks"
+      },
+      {
+        "command": "is-it-ready.runTask",
+        "title": "Run Task"
+      },
+      {
+        "command": "is-it-ready.fixTask",
+        "title": "Run Fix"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "is-it-ready.runAllTasks",
+          "when": "view == is-it-ready.tasks",
+          "group": "navigation"
+        },
+        {
+          "command": "is-it-ready.refreshTasks",
+          "when": "view == is-it-ready.tasks",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "is-it-ready.runTask",
+          "when": "view == is-it-ready.tasks && (viewItem == is-it-ready.task || viewItem == is-it-ready.task.fix)",
+          "group": "inline"
+        },
+        {
+          "command": "is-it-ready.fixTask",
+          "when": "view == is-it-ready.tasks && viewItem == is-it-ready.task.fix",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run type-check && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "package": "npm run type-check && npm run lint && node esbuild.js --production",
+    "release": "semantic-release",
+    "compile-tests": "tsc -p . --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "knip": "knip",
+    "knip:loose": "KNIP_MODE=loose knip",
+    "knip:fix": "knip --fix",
+    "lint": "eslint src",
+    "lint:loose": "ESLINT_MODE=loose eslint src",
+    "lint:fix": "eslint --fix src",
+    "markdownlint": "markdownlint-cli2 \"**/*.md\" \"!CHANGELOG.md\" \"!dist\" \"!node_modules\"",
+    "markdownlint:fix": "markdownlint-cli2 --fix \"**/*.md\" \"!CHANGELOG.md\" \"!dist\" \"!node_modules\"",
+    "prettier": "prettier --check 'src/**/*.{js,ts,mjs,cjs,json}' '*.{js,ts,mjs,cjs,json}'",
+    "prettier:fix": "prettier --write 'src/**/*.{js,ts,mjs,cjs,json}' '*.{js,ts,mjs,cjs,json}'",
+    "prettier:watch": "chokidar \"src/**/*.{js,ts,mjs,cjs,json}\" \"*.{js,ts,mjs,cjs,json}\" -c \"npm run --silent prettier:fix\"",
+    "spelling": "cspell --no-progress 'src/**/*.{js,ts,mjs,cjs,json}' '*.{js,ts,mjs,cjs,json}'",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "type-check": "tsc --noEmit",
+    "check": "is-it-ready",
+    "check:fix": "is-it-ready --fix",
+    "check:watch": "is-it-ready --watch"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^11.0.0",
+    "@semantic-release/commit-analyzer": "^11.0.0",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^11.0.0",
+    "@semantic-release/npm": "^11.0.0",
+    "@semantic-release/release-notes-generator": "^12.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.10.1",
+    "@types/vscode": "^1.108.1",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "@vitest/coverage-v8": "^4.0.15",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.0.0",
+    "chokidar-cli": "^3.0.0",
+    "cspell": "^9.4.0",
+    "esbuild": "^0.27.2",
+    "eslint": "^9.39.1",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^61.5.0",
+    "eslint-plugin-unused-imports": "^4.3.0",
+    "is-it-ready": "^1.6.1",
+    "knip": "^5.71.0",
+    "markdownlint-cli2": "^0.20.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.7.4",
+    "semantic-release": "^23.0.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.1",
+    "vitest": "^4.0.15"
+  }
+}

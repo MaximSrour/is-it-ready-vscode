@@ -1,6 +1,6 @@
 {
   "name": "is-it-ready",
-  "displayName": "is-it-ready",
+  "displayName": "Is It Ready",
   "publisher": "MaximSrour",
   "description": "Orchestrator that runs your project's formatting, linting, tests, inventory, and security checks in one dashboard.",
   "repository": {

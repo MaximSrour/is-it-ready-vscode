@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.6...v1.0.7) (2026-01-26)
+
+
+### Bug Fixes
+
+* update the display name ([20fb486](https://github.com/MaximSrour/is-it-ready-vscode/commit/20fb4860f4d06ff1f3fbdb4b60ea4838e462359a))
+
 ## [1.0.6](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.5...v1.0.6) (2026-01-26)
 
 

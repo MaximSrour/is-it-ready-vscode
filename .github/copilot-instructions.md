@@ -1,7 +1,7 @@
 # GitHub Copilot Instructions
 
 These instructions guide GitHub Copilot when generating code for the
-is-it-ready project.
+is-it-ready-vscode extension.
 
 ## Code Style and Standards
 
@@ -15,6 +15,14 @@ is-it-ready project.
 - Explicitly type function parameters, rely on type inference for return values
 - Use interfaces for object shapes, types for unions/primitives
 
+### VS Code Extension Patterns
+
+- Use `context.subscriptions` to manage disposables
+- Avoid blocking the extension host (prefer async I/O)
+- Use `window.showWarningMessage`/`showErrorMessage` for user feedback
+- Keep command handlers small and delegate to helpers
+- Favor VS Code API types (`WorkspaceFolder`, `OutputChannel`, etc.)
+
 ### Code Organization
 
 - Keep functions small and focused (single responsibility)
@@ -25,9 +33,9 @@ is-it-ready project.
 
 ### Naming Conventions
 
-- **Files**: camelCase (e.g., `runOptions.ts`)
-- **Functions/Variables**: camelCase (e.g., `parseOptions`, `isReady`)
-- **Types/Interfaces**: PascalCase (e.g., `RunOptions`, `TaskConfig`)
+- **Files**: camelCase (e.g., `taskRunner.ts`)
+- **Functions/Variables**: camelCase (e.g., `resolveTask`)
+- **Types/Interfaces**: PascalCase (e.g., `IsItReadyTask`)
 - **Constants**: camelCase or UPPER_SNAKE_CASE for true constants
 - **Test files**: `*.test.ts` suffix
 
@@ -72,28 +80,9 @@ describe("functionToTest", () => {
 
 ## Quality Gates
 
-### Before Every Commit
+Before committing, prefer running:
 
-Run `npm run check` to validate all quality gates:
-
-1. **Prettier** - Code formatting
-2. **ESLint** - Code linting and best practices
-3. **MarkdownLint** - Markdown file quality
-4. **TypeScript** - Type checking
-5. **Vitest** - All tests pass
-6. **Knip** - No unused dependencies or exports
-7. **npm audit** - No known security vulnerabilities
-
-### Individual Quality Checks
-
-- `npm run prettier` or `npm run prettier:fix`
-- `npm run lint` or `npm run lint:fix`
-- `npm run type-check`
-- `npm run test`
-- `npm run knip`
-- `npm run markdownlint` or `npm run markdownlint:fix`
-
-## Code Patterns
+- `npm run check` (orchestrates all checks)
 
 ### Error Handling
 

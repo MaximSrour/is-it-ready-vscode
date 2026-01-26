@@ -1,12 +1,13 @@
 # Commit Message Instructions
 
-This document outlines commit message conventions for the is-it-ready project.
+This document outlines commit message conventions for the
+is-it-ready-vscode project.
 
 ## Overview
 
 This project uses [Conventional Commits](https://www.conventionalcommits.org/)
-specification with [semantic-release](https://semantic-release.gitbook.io/)
-for automated versioning and changelog generation.
+with [semantic-release](https://semantic-release.gitbook.io/) for automated
+versioning and changelog generation.
 
 ## Commit Message Format
 
@@ -187,19 +188,19 @@ Therefore, correct commit messages are critical for proper version management!
 
 ## Quick Reference
 
-| Type               | Version Bump | Use Case             |
-| ------------------ | ------------ | -------------------- |
-| `feat`             | MINOR        | New feature          |
-| `fix`              | PATCH        | Bug fix              |
-| `feat!` or `fix!`  | MAJOR        | Breaking change      |
-| `docs`             | None         | Documentation        |
-| `style`            | None         | Formatting           |
-| `refactor`         | None         | Code restructuring   |
-| `perf`             | None         | Performance          |
-| `test`             | None         | Tests                |
-| `build`            | None         | Build system         |
-| `ci`               | None         | CI/CD                |
-| `chore`            | None         | Maintenance          |
+| Type              | Version Bump | Use Case           |
+| ----------------- | ------------ | ------------------ |
+| `feat`            | MINOR        | New feature        |
+| `fix`             | PATCH        | Bug fix            |
+| `feat!` or `fix!` | MAJOR        | Breaking change    |
+| `docs`            | None         | Documentation      |
+| `style`           | None         | Formatting         |
+| `refactor`        | None         | Code restructuring |
+| `perf`            | None         | Performance        |
+| `test`            | None         | Tests              |
+| `build`           | None         | Build system       |
+| `ci`              | None         | CI/CD              |
+| `chore`           | None         | Maintenance        |
 
 ## Resources
 

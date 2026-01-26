@@ -3,6 +3,10 @@
   "displayName": "is-it-ready",
   "publisher": "MaximSrour",
   "description": "Orchestrator that runs your project's formatting, linting, tests, inventory, and security checks in one dashboard.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MaximSrour/is-it-ready-vscode.git"
+  },
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.108.0"

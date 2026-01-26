@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.4...v1.0.5) (2026-01-26)
+
+
+### Bug Fixes
+
+* add npm plugin configuration to release process ([afc9b43](https://github.com/MaximSrour/is-it-ready-vscode/commit/afc9b434e8ac3c9eb0e75aa4c2e038e8a79f98c2))
+
 ## [1.0.4](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.3...v1.0.4) (2026-01-26)
 
 

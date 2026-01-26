@@ -53,6 +53,10 @@
         "title": "Run Task"
       },
       {
+        "command": "is-it-ready.openTaskOutput",
+        "title": "Open Task Output"
+      },
+      {
         "command": "is-it-ready.fixTask",
         "title": "Run Fix"
       }

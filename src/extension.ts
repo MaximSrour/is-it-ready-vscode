@@ -23,7 +23,21 @@ import { type IsItReadyTask } from "./types";
  */
 export function activate(context: ExtensionContext) {
   const tasksProvider = new TasksTreeDataProvider();
-  const outputChannel = createOutputChannel();
+  const outputChannels = new Map<
+    string,
+    ReturnType<typeof createOutputChannel>
+  >();
+
+  const getOutputChannelForTask = (tool: string) => {
+    const existing = outputChannels.get(tool);
+    if (existing) {
+      return existing;
+    }
+    const channel = createOutputChannel(`Is It Ready: ${tool}`);
+    outputChannels.set(tool, channel);
+    context.subscriptions.push(channel);
+    return channel;
+  };
 
   context.subscriptions.push(
     window.registerTreeDataProvider("is-it-ready.tasks", tasksProvider)
@@ -52,6 +66,7 @@ export function activate(context: ExtensionContext) {
         }
 
         tasksProvider.setStatus(task.tool, "running");
+        const outputChannel = getOutputChannelForTask(task.tool);
         const exitCode = await runTaskInternal(
           outputChannel,
           workspaceFolder,
@@ -80,6 +95,7 @@ export function activate(context: ExtensionContext) {
         }
 
         tasksProvider.setStatus(task.tool, "running");
+        const outputChannel = getOutputChannelForTask(task.tool);
         const exitCode = await runTaskInternal(
           outputChannel,
           workspaceFolder,
@@ -106,6 +122,7 @@ export function activate(context: ExtensionContext) {
       await Promise.all(
         tasks.map(async (item) => {
           tasksProvider.setStatus(item.task.tool, "running");
+          const outputChannel = getOutputChannelForTask(item.task.tool);
           const exitCode = await runTaskInternal(
             outputChannel,
             workspaceFolder,
@@ -116,6 +133,21 @@ export function activate(context: ExtensionContext) {
         })
       );
     })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand(
+      "is-it-ready.openTaskOutput",
+      (taskInput?: IsItReadyTask | TasksTreeItem) => {
+        const task = resolveTask(taskInput);
+        if (!task?.tool) {
+          window.showWarningMessage("No task selected.");
+          return;
+        }
+        const outputChannel = getOutputChannelForTask(task.tool);
+        outputChannel.show(true);
+      }
+    )
   );
 
   const workspaceFolder = getWorkspaceFolder();
@@ -134,8 +166,6 @@ export function activate(context: ExtensionContext) {
     });
     context.subscriptions.push(watcher);
   }
-
-  context.subscriptions.push(outputChannel);
 }
 
 /**

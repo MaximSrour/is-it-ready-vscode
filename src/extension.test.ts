@@ -139,8 +139,8 @@ describe("extension helpers", () => {
 
     expect(item.contextValue).toBe("is-it-ready.task");
     expect(item.command).toEqual({
-      command: "is-it-ready.runTask",
-      title: "Run Task",
+      command: "is-it-ready.openTaskOutput",
+      title: "Open Task Output",
       arguments: [task],
     });
   });

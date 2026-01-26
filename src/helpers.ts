@@ -36,8 +36,8 @@ export class TasksTreeItem extends TreeItem {
       : "is-it-ready.task";
     this.iconPath = getStatusIcon(status);
     this.command = {
-      command: "is-it-ready.runTask",
-      title: "Run Task",
+      command: "is-it-ready.openTaskOutput",
+      title: "Open Task Output",
       arguments: [task],
     };
   }
@@ -170,25 +170,24 @@ export function getWorkspaceFolder(): WorkspaceFolder | undefined {
 /**
  * Create an output channel for logging.
  *
+ * @param {string} name - The name of the output channel.
  * @returns {OutputChannel} - The created output channel.
  */
-export function createOutputChannel(): OutputChannel {
-  return window.createOutputChannel("Is It Ready");
+export function createOutputChannel(name: string): OutputChannel {
+  return window.createOutputChannel(name);
 }
 
 /**
  * Run a command in a given working directory and log output to the provided output channel.
  *
- * @param {OutputChannel} outputChannel - The output channel to log command output.
  * @param {string} command - The command to run.
  * @param {string} cwd - The working directory to run the command in.
  * @returns {Promise<number>} - A promise that resolves to the command's exit code.
  */
 async function runCommand(
-  outputChannel: OutputChannel,
   command: string,
   cwd: string
-): Promise<number> {
+): Promise<{ exitCode: number; stdout: string; stderr: string }> {
   return new Promise((resolve) => {
     const shellPath = env.shell || process.env.SHELL || "/bin/sh";
     const { shell, args } = buildShellCommand(shellPath, command);
@@ -198,20 +197,30 @@ async function runCommand(
         env,
       });
 
+      const stdoutChunks: Buffer[] = [];
+      const stderrChunks: Buffer[] = [];
+
       child.stdout.on("data", (data: Buffer) => {
-        outputChannel.append(data.toString());
+        stdoutChunks.push(data);
       });
       child.stderr.on("data", (data: Buffer) => {
-        outputChannel.append(data.toString());
+        stderrChunks.push(data);
       });
 
       child.on("error", (error) => {
-        outputChannel.appendLine(`Command failed to start: ${error.message}`);
-        resolve(1);
+        resolve({
+          exitCode: 1,
+          stdout: "",
+          stderr: `Command failed to start: ${error.message}`,
+        });
       });
 
       child.on("close", (code) => {
-        resolve(code ?? 1);
+        resolve({
+          exitCode: code ?? 1,
+          stdout: Buffer.concat(stdoutChunks).toString(),
+          stderr: Buffer.concat(stderrChunks).toString(),
+        });
       });
     });
   });
@@ -319,10 +328,38 @@ export async function runTaskInternal(
   commandOverride?: string
 ): Promise<number> {
   const command = commandOverride ?? task.command;
-  outputChannel.appendLine(`\n> ${task.tool}`);
-  outputChannel.appendLine(`$ ${command}\n`);
+  outputChannel.clear();
   outputChannel.show(true);
-  return runCommand(outputChannel, command, workspaceFolder.uri.fsPath);
+
+  const { exitCode, stdout, stderr } = await runCommand(
+    command,
+    workspaceFolder.uri.fsPath
+  );
+
+  const trimmedStderr = stderr.trim();
+  const trimmedStdout = stdout.trim();
+
+  if (exitCode === 0 && trimmedStderr.length === 0) {
+    outputChannel.appendLine(`✓ ${task.tool} succeeded`);
+    return exitCode;
+  }
+
+  if (trimmedStderr.length > 0) {
+    outputChannel.appendLine(trimmedStderr);
+    return exitCode;
+  }
+
+  if (trimmedStdout.length > 0) {
+    outputChannel.appendLine(trimmedStdout);
+    return exitCode;
+  }
+
+  outputChannel.appendLine(
+    exitCode === 0
+      ? `✓ ${task.tool} succeeded`
+      : `${task.tool} failed with exit code ${exitCode}`
+  );
+  return exitCode;
 }
 
 /**

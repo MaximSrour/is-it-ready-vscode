@@ -9,7 +9,13 @@
   "categories": [
     "Other"
   ],
-  "main": "./dist/extension.js",
+  "main": "dist/extension.js",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "is-it-ready": "dist/extension.js"
+  },
   "contributes": {
     "viewsContainers": {
       "activitybar": [

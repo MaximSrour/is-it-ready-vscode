@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.9...v1.1.0) (2026-03-12)
+
+
+### Features
+
+* add renovate configuration file ([b0fc1e2](https://github.com/MaximSrour/is-it-ready-vscode/commit/b0fc1e2c0bb17b4fd77d205950253bc4bf30d9b4))
+
 ## [1.0.9](https://github.com/MaximSrour/is-it-ready-vscode/compare/v1.0.8...v1.0.9) (2026-01-26)
 
 

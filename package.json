@@ -136,7 +136,7 @@
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsdoc": "^61.5.0",
+    "eslint-plugin-jsdoc": "^62.0.0",
     "eslint-plugin-unused-imports": "^4.3.0",
     "is-it-ready": "^1.6.1",
     "knip": "^5.86.0",
